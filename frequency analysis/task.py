@@ -1,21 +1,27 @@
-import simplejson
 file = open('text.txt','r')
-stroka = file.read()
-str = 'абвгдеёжзиклмнопрстуфхцчшщъыьэюя'
+data = file.read()
+str1 = 'абвгдеёжзиклмнопрстуфхцчшщъыьэюя'
 dict = {}
-stroka = stroka.lower()
-for line in stroka:
-    for i in line:
-        if str.find(i) > -1:
-            if i in dict:
-                dict[i] += 1
-            else:
-                dict[i] = 0
 
-l = lambda x: x[1]
-ans = sorted(dict.items(), key=l, reverse = True)
-print(ans)
-f = open('itog.txt', 'w')
-simplejson.dump(ans, f, ensure_ascii = False)
-f.close()
+kolvo = 0
+
+for line in data:
+	for i in line:
+		if str1.find(i)>-1:
+			kolvo += 1
+			if i in dict:
+				dict[i] += 1
+			else:
+				dict[i] = 1
+
+n = max(dict.values())
+a = []
+for i in dict:
+    a.append([round(dict[i]/kolvo, 3),i])
+
+a = sorted(a, reverse = True)
+print(a)
+file1 = open('itog.txt','w')
+[file1.write(i[1] + ' ' + '=' + ' ' + str(i[0]) + '\n') for i in a]
+file1.close()
 

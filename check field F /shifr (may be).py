@@ -46,25 +46,31 @@ for i in range(kol): # нахождение нулевой матрицы (пр�
             print(q[6],q[7], q[8])
             null = q
             break
+
 if not(check):
      print('Нулевой элемент не найден')
      type = False
+
 if 1 > 0:
-    check = False # нахождение единичного элемента (при умножении на себя дает себя)
+    check = False
     for i in range(kol):
         for j in range(kol):
-            if mul(matr[j], matr[i]) == matr[j] and matr[j] != null:
+            if mul(matr[j], matr[i]) == matr[j] and mul(matr[i],matr[j]) == matr[j] and matr[i] != null:
                 check = True
-                print('Единичный элемент найден: ')
-                q = matr[i]
-                print(q[0],q[1],q[2])
-                print(q[3],q[4],q[5])
-                print(q[6],q[7],q[8])
-                ed = q
-                break
+                for k in range(kol):
+                     if mul(matr[k],matr[i]) != matr[k]:
+                             check *= False
+                if check:
+                        print('Единичный элемент найден: ')
+                        q = matr[i]
+                        print(q[0],q[1],q[2])
+                        print(q[3],q[4],q[5])
+                        print(q[6],q[7],q[8])
+                        ed = q
+                        break
     if not(check):
-        print('Единичный элемент не найден')
         type = False
+        print('Единичный элемент не найден')
 
 if 1 > 0:
     check = False # проверка коммутативности
